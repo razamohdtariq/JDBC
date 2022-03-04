@@ -12,16 +12,23 @@ Class.forName("com.mysql.cj.jdbc.Driver");
 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tariq","root","Raza@$786");
 Statement st=con.createStatement();
 //String query="create table student(ID int primary key, SName varchar(30), SMarks int)";
-//String query1 ="insert into student values(3,'Ali',28)";
-//String query2= "Delete from student Where ID=3";
-String query3= "Update student Set SName='Abhishek' Where ID=2";
-//st.executeUpdate(query);
-st.executeUpdate(query3);
-//System.out.println("Student Table created  successfully");
-System.out.println("Row Delete successfully");
+String query1 ="insert into student values(3,'Ali',28)";
+//String query = "Select * FROM student";
+ResultSet rs= st.executeQuery("SELECT ID, SName, SMarks FROM student");  
+while(rs.next())
+{
+    System.out.println(rs.getString(1));  
+    System.out.println(rs.getString(2)); 
+    System.out.println(rs.getString(3));  
+  }
+//st.executeUpdate(query1);
+//System.out.println("Student Table created successfully");
+
+System.out.println("Row inserted successfully");
+
 st.close();
 con.close();
-
-	}
+}
 
 }
+
